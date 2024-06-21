@@ -1,0 +1,65 @@
+@import url("./define_colors.css");
+
+* {
+  padding-left: 10px;
+  padding-right:10px;
+  border-radius: 10%;
+  background: @general-background;
+ /* foreground: @foreground;*/
+  font-family: "martian mono", "symbols nerd font", "monospace";
+  font-size: 10pt; /* Ensure semicolon is present */
+}
+
+#waybar {
+  background: @general-background;
+  color: @foreground;
+}
+
+#workspaces{
+  border-radius: 5;
+}
+
+#workspaces button label {
+  font-size: 20px;
+}
+
+#workspaces button {
+  border-radius: 1;
+  border: none;
+  margin: 0;
+  background: @background-alt;
+  color: @darkwhite;
+}
+
+#workspaces button.focused {
+  background: @background;
+  color: @yellow;
+}
+
+#workspaces button.occupied {
+  background: @background;
+  color: @darkwhite;
+}
+
+#workspaces button.urgent {
+  background: @background;
+  color: @red;
+}
+
+#clock {
+  background: @background;
+  font-size: 13pt;
+  color: @foreground;
+}
+
+#battery {
+  background: @background;
+}
+
+#pulseaudio {
+  background: @background;
+}
+
+#cpu {
+  background: @background;
+}
