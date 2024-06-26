@@ -1,6 +1,7 @@
 Simple repo to store my dotfiles
 
 Heavily inspired by savar95x https://github.com/savar95x/dotfiles.
+
 Basically just switching it to Wayland, sway and customixing something. Some pics:
 
 Neovim
