@@ -1,0 +1,63 @@
+
+# Shell configuration
+[shell]
+program = "/bin/bash"
+
+# Environment variables
+[env]
+TERM = "xterm-256color"
+
+# Window settings
+[window]
+dynamic_padding = true
+opacity = 0.85
+blur = true
+
+# Window padding
+[window.padding]
+x = 25
+y = 20
+
+[font.bold]
+family = "0xProto Nerd Font"
+style = "Heavy"
+
+[font.bold_italic]
+family = "0xProto Nerd Font"
+style = "Heavy Italic"
+
+[font.italic]
+family = "0xProto Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+family = "0xProto Nerd Font"
+style = "Medium"
+
+
+
+# Gruvbox-material colors
+
+[colors.primary]
+background = "0x282828"
+foreground = "0xd4be98"
+
+[colors.normal]
+black = "0x3c3836"
+red = "0xea6962"
+green = "0xa9b665"
+yellow = "0xd8a657"
+blue = "0x7daea3"
+magenta = "0xd3869b"
+cyan = "0x89b482"
+white = "0xd4be98"
+
+[colors.bright]
+black = "0x3c3836"
+red = "0xea6962"
+green = "0xa9b665"
+yellow = "0xd8a657"
+blue = "0x7daea3"
+magenta = "0xd3869b"
+cyan = "0x89b482"
+white = "0xd4be98"
