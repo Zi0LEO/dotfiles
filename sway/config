@@ -54,8 +54,6 @@ bar {
     font pango: Martian Mono 12
 
 
-bindsym $mod+N exec $toggle_waybar_path
-
 #█▄▄ █▀█ █▀█ █▀▄ █▀▀ █▀█
 #█▄█ █▄█ █▀▄ █▄▀ ██▄ █▀▄
                 
@@ -95,9 +93,11 @@ bindsym $mod+N exec $toggle_waybar_path
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec sway exit
 
+    # Emojis
+    bindsym Ctrl+Alt+e exec emote
 #dunst
     bindsym $mod+o exec notify-send -t 3500 "$(date '+%a %b %e %r')"
-    bindsym $mod+i exec notify-send "$(curl wttr.in/pokhara?format=3)"
+    bindsym $mod+i exec notify-send "$(curl wttr.in/Cosenza?format=3)"
 
 #poweroff, reboot shortcuts
     bindsym $mod+Shift+End exec poweroff
