@@ -32,7 +32,7 @@ include /etc/sway/config.d/*
     exec_always --no-startup-id nm-applet
     exec_always --no-startup-id dunst
     exec_always --no-startup-id autotiling-rs
-    exec_always brightnessctl set 35%
+    exec_always brightnessctl set 50%
     exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
     exec --no-startup-id systemctl --user import-environment DISPLY WAYLAND_DISPLAY SWAYSOCK
     exec hash dbus-update-activation-environment 2>/dev/null && \
@@ -45,8 +45,8 @@ include /etc/sway/config.d/*
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 }
 
-bar { 
-     swaybar_command waybar
+bar {
+    swaybar_command waybar
 }
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -110,10 +110,10 @@ bar {
     floating_modifier $mod
 
 # change focus
-    bindsym $mod+j focus left
+    bindsym $mod+j focus up
     bindsym $mod+k focus down
-    bindsym $mod+l focus up
-    bindsym $mod+semicolon focus right
+    bindsym $mod+l focus right
+    bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:
     bindsym $mod+Left focus left
@@ -122,10 +122,10 @@ bar {
     bindsym $mod+Right focus right
 
 # move focused window
-    bindsym $mod+Shift+j move left
+    bindsym $mod+Shift+j move up
     bindsym $mod+Shift+k move down
-    bindsym $mod+Shift+l move up
-    bindsym $mod+Shift+semicolon move right
+    bindsym $mod+Shift+l move right
+    bindsym $mod+Shift+h move left
 
 # alternatively, you can use the cursor keys:
     bindsym $mod+Shift+Left move left
@@ -140,7 +140,7 @@ bar {
 
     gaps {
       inner 3
-      outer 3
+      outer 1
     }
 
     # set default desktop layout (default is tiling)
@@ -227,7 +227,10 @@ bar {
 # Open applications on specific workspaces
 # Assign workspace
     assign [class="VirtualBox Machine"] workspace 6
-
+    
+    workspace $ws1 output DP-1
+    workspace $ws2 output HDMI-A-1
+    workspace $ws3 output eDP-1
 
 # switch to workspace with urgent window automatically
     for_window [urgent=latest] focus
@@ -262,6 +265,14 @@ bar {
 # █▄▄ █▄█ █▄▄ █░█
 
 bindsym $mod+0 exec $lock_path
+
+
+#MONITOR SETUP
+
+output DP-1 pos 0 0
+output HDMI-A-1 pos 1920 0
+output eDP-1 pos 3840 0
+output HDMI-A-1 mode 1920x1080@99.999Hz
 
 # █▀▄▀█ █▀▀ █▀▄ █ ▄▀█   █▄▀ █▀▀ █▄█ █▀
 # █░▀░█ ██▄ █▄▀ █ █▀█   █░█ ██▄ ░█░ ▄█
