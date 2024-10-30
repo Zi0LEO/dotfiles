@@ -1,0 +1,264 @@
+# Globals #
+monitor=,preferred,auto, 1
+exec-once=hyprctl setcursor Bibata-Modern-Ice 1
+exec-once=/usr/lib/polkit-kde-authentication-agent-1 
+exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once=waybar
+exec-once=dunst
+exec-once=eww daemon
+exec-once=playerctld daemon
+exec-once=$HOME/.config/hypr/scripts/start_wall
+exec-once=swayidle -w
+exec-once=nm-applet --indicator
+exec-once=blueman-applet
+exec-once = wl-paste --type text --watch cliphist store #Stores only text data
+#exec-once = wl-paste --type image --watch cliphist store #Stores only image data
+exec-once = wl-paste --type image --watch notify-send 'Screenshot' 'Copied to clipboard' -i photoqt #Notify when imaged copied
+# Env variables
+env=GDK_BACKEND,wayland,x11
+env=QT_QPA_PLATFORM,wayland;xcb
+env=SDL_VIDEODRIVER,wayland
+env=CLUTTER_BACKEND,wayland
+env=XDG_CURRENT_DESKTOP,Hyprland
+env=XDG_SESSION_TYPE,wayland
+env=XDG_SESSION_DESKTOP,Hyprland
+env=QT_AUTO_SCREEN_SCALE_FACTOR,1
+env=QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+env=QT_QPA_PLATFORMTHEME,qt5ct
+env=XCURSOR_THEME,Bibata-Modern-Ice
+env=XCURSOR_SIZE,16
+
+input {
+    kb_layout=us,es
+    kb_variant=ffffff
+    kb_model=
+    kb_options=grp:alt_shift_toggle
+    kb_rules=
+    follow_mouse=1
+    touchpad {
+      natural_scroll=no
+    }
+}
+
+misc {
+  enable_swallow=true
+  swallow_regex=Alacritty
+  swallow_regex=floatcritty
+  swallow_regex =^(kitty)$
+  layers_hog_keyboard_focus=true
+  vfr=true
+  vrr=0
+  animate_mouse_windowdragging=true
+
+}
+
+general {
+    gaps_in=4 
+    gaps_out=4
+    border_size=0
+    no_border_on_floating=0
+    col.active_border=rgba(D4BE98FF)
+    col.inactive_border=rgba(ebdbb211)
+    col.nogroup_border=rgba(323232AA)
+    col.nogroup_border_active=rgba(D4BE98FF) 
+    resize_on_border=false
+}
+
+decoration {
+     blur {
+         new_optimizations=true
+         size=1 # minimum 1
+         passes=2 # minimum 1, more passes = more resource intensive.
+         }
+     rounding=14
+     drop_shadow=1
+     shadow_ignore_window=true
+     shadow_offset=7 7
+     shadow_range=15
+     shadow_render_power=4
+     shadow_scale=0.99
+     col.shadow=rgba(000000BB)
+     #col.shadow_inactive=rgba(000000BB)
+     dim_inactive=true
+     dim_strength=0.1
+     active_opacity= 0.99
+     inactive_opacity=1
+    # Your blur "amount" is blur_size * blur_passes, but high blur_size (over around 5-ish) will produce artifacts.
+    # if you want heavy blur, you need to up the blur_passes.
+    # the more passes, the more you can up the blur_size without noticing artifacts.
+}
+
+
+
+animations {
+    enabled=1
+    # bezier=overshot,0.05,0.9,0.1,1.1 # Version 1
+    # bezier=overshot,0.13,0.99,0.29,1.09 # Version 2
+    bezier=overshot,0,0.61,0.22,1.12 #Current active
+    animation=windows,1,3,default,slide
+    animation=windowsMove,1,3,overshot
+    animation=windowsOut,1,3,default,popin
+    animation=border,1,1,default
+    animation=fadeIn,1,5,default 
+    animation=fadeOut,1,5,default
+    animation=fadeSwitch,1,10,default
+    animation=workspaces,1,3.8,overshot,slidevert
+    animation=border, 1, 10, overshot
+    animation=borderangle, 1, 50, overshot, loop
+}
+
+dwindle {
+    pseudotile=1 # enable pseudotiling on dwindle
+    force_split=2 
+    preserve_split=true
+    no_gaps_when_only=false
+}
+
+
+
+gestures {
+    workspace_swipe=yes
+    workspace_swipe_fingers=3
+}
+
+# Window rules #
+windowrule=float,system_monitor
+windowrule=size 1570 840,system_monitor
+windowrule=center,system_monitor
+windowrule=float,calendar
+windowrule=size 1000 600,calendar
+windowrule=center,calendar
+windowrule=float, Calculator
+windowrule=float, org.kde.polkit-kde-authentication-agent-1
+windowrule=float, xdg-desktop-portal-gtk
+windowrule = float,^(pavucontrol)$
+windowrule = float,^(blueman-manager)$
+windowrule = float,^(nm-connection-editor)$
+#windowrule = float,^(Chromium)$
+windowrule = float,^(Thunar)$
+windowrule= float,^(org.gnome.Nautilus)$
+windowrule = float, title:^(Open File)$
+windowrule = float, title:^(Open Folder)$
+windowrule = float, title:^(update-sys)
+windowrule = float,kitty
+windowrule = float, org.gnome.TextEditor
+windowrule = float,nvim 
+windowrule= workspace 1,firefox
+windowrule= opaque,firefox
+windowrule= workspace special:hidden, Spotify
+windowrule= float,gnome-pomodoro
+windowrule= move center,gnome-pomodoro
+windowrule= size 528 756,gnome-pomodoro
+windowrule= idleinhibit focus,steam_app[0-9]*
+windowrule= idleinhibit fullscreen,firefox
+# System binds #
+
+bind=SUPER, RETURN, exec, alacritty
+
+# Borders #
+
+# Remove borders
+bind = SUPER, u, exec, hyprctl dispatch setwindowrule borderless
+
+# Set borders to 2 pixels
+bind = SUPER, y, exec, hyprctl dispatch setwindowrule borderpx 2
+
+# (Optional) Set borders to default 1 pixel
+bind = SUPER, n, exec, hyprctl dispatch setwindowrule borderpx 1
+# Kill focused window
+bind = SUPER_SHIFT, q, closewindow
+
+# Start your launcher
+#bind = SUPER, d, exec, rofi
+
+# Exit Hyprland (logs you out of your Wayland session)
+bind = SUPER_SHIFT, e, exec, hyprctl dispatch exit
+
+# Notifications
+bind = SUPER, o, exec, notify-send -t 3500 "$(date '+%a %b %e %r')"
+bind = SUPER, i, exec, notify-send "$(curl wttr.in/Cosenza?format=3)"
+
+bindm=SUPER,mouse:272,movewindow
+bindm=SUPER,mouse:273,resizewindow
+bind=,Print,exec,$HOME/.config/rofi/applets/bin/screenshot.sh
+bind=,XF86MonBrightnessUp,exec,brightnessctl set 30+
+bind=,XF86MonBrightnessDown,exec,brightnessctl set 30-
+bind=,XF86AudioRaiseVolume,exec,amixer set Master 5%+
+bind=,XF86AudioLowerVolume,exec,amixer set Master 5%-
+bind=,XF86AudioMute,exec,amixer set Master toggle
+
+bind=SUPER,P,pin,
+bind=SUPER,C,movetoworkspace,special:hidden
+bind=SUPER,T,togglespecialworkspace,hidden
+bind=SUPER,K, exec, hyprctl kill
+bind=SUPER,M,exec, $HOME/.config/rofi/applets/bin/powermenu.sh 
+bind=SUPER,SPACE ,togglefloating,
+bind=,Insert,exec,$HOME/.config/rofi/applets/bin/clipboard.sh
+bind=SUPER,L,lockgroups, toggle
+bind=SUPER,left,movefocus,l
+bind=SUPER,right,movefocus,r
+bind=SUPER,up,movefocus,u
+bind=SUPER,down,movefocus,d
+
+bind=SUPER,h,movefocus,l
+bind=SUPER,l,movefocus,r
+bind=SUPER,j,movefocus,u
+bind=SUPER,k,movefocus,d
+
+bind=SUPER,1,workspace,1
+bind=SUPER,2,workspace,2
+bind=SUPER,3,workspace,3 
+bind=SUPER,4,workspace,4
+bind=SUPER,5,workspace,5
+bind=SUPER,6,workspace,6
+bind=SUPER,7,workspace,7
+bind=SUPER,8,workspace,8
+bind=SUPER,9,workspace,9
+bind=SUPER,0,workspace,10
+bind=SUPER_SHIFT,1,movetoworkspace,1
+bind=SUPER_SHIFT,2,movetoworkspace,2
+bind=SUPER_SHIFT,3,movetoworkspace,3
+bind=SUPER_SHIFT,4,movetoworkspace,4
+bind=SUPER_SHIFT,5,movetoworkspace,5
+bind=SUPER_SHIFT,6,movetoworkspace,6
+bind=SUPER_SHIFT,7,movetoworkspace,7
+bind=SUPER_SHIFT,8,movetoworkspace,8
+bind=SUPER_SHIFT,9,movetoworkspace,9
+bind=SUPER_SHIFT,0,movetoworkspace,10
+bind=SUPER,mouse_down,workspace,e+1
+bind=SUPER,mouse_up,workspace,e-1
+bind=SUPER,g,togglegroup
+bind=ALT, TAB, exec, ~/.config/hypr/scripts/tab_floating_windows
+bind=SUPER,tab,changegroupactive
+bindl=,switch:Lid Switch,exec,~/.config/hypr/scripts/lock
+bindl=,switch:Lid Switch,exec,systemctl suspend
+
+# Split horizontally and vertically
+bind = SUPER, b, exec, hyprctl dispatch splitratio h
+bind = SUPER, v, exec, hyprctl dispatch splitratio v
+
+# Switch layout (tabbed and split toggle)
+bind = SUPER, w, exec, hyprctl dispatch togglesplit
+bind = SUPER, e, exec, hyprctl dispatch togglesplit
+
+# Make the current window fullscreen
+bind = SUPER, f, exec, hyprctl dispatch fullscreen
+
+# Toggle between tiling and floating mode
+bind = SUPER_SHIFT, SPACE, exec, hyprctl dispatch togglefloating
+
+# Swap focus between floating and tiling
+bind = SUPER, SPACE, exec, hyprctl dispatch toggletiled
+
+# Move focus to the parent container
+bind = SUPER, a, exec, hyprctl dispatch focus parent
+
+# Binds to launch programs
+bind=SUPER, e ,exec,nautilus
+bind=SUPER, d, exec,~/.config/rofi/launchers/type-2/launcher.sh
+blurls=rofi
+#blurls=waybar
+#blurls=gtk-layer-shell
+
+
+

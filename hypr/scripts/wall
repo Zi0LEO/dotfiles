@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+FOLDER_PATH="/home/leonardonapoli/Immagini/Hyprland-Wallpapers/"
+IMAGE=($(ls $FOLDER_PATH | shuf -n 1))
+$HOME/.config/hypr/scripts/set_background.sh "$FOLDER_PATH/$IMAGE"
+# restart wall_schedule
+pkill wall_schedule
+$HOME/.config/hypr/scripts/wall_schedule &

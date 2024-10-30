@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+swww kill
+if ! pgrep -x "swww-daemon" > /dev/null; then
+  swww-daemon
+fi
+IMG_NAME=$(ls /home/leonardonapoli/Immagini/Hyprland-Wallpapers/ | shuf -n 1)
+IMG_PATH_FULL="$HOME/Immagini/Hyprland-Wallpapers/$IMG_NAME"
+./set_background.sh "$IMG_PATH_FULL"
+/home/leonardonapoli/.config/hypr/scripts/wall_schedule &

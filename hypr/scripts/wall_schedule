@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+FOLDER_PATH="/home/leonardonapoli/Immagini/Hyprland-Wallpapers/"
+LIST=($(ls $FOLDER_PATH | shuf))
+for image in "${LIST[@]}"
+do
+  sleep 10m
+$HOME/.config/hypr/scripts/set_background.sh "$FOLDER_PATH/$image"
+done
