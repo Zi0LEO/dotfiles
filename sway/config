@@ -24,9 +24,10 @@ include /etc/sway/config.d/*
 # Set wallpaper:
     #exec swaybg -i ~/Pictures/wallpapers/wp1.jpg
     #exec_always --no-startup-id ~/.azotebg
-    output * bg ~/Pictures/wallpaper_gruvbox.jpeg fill
+    output * bg ~/Pictures/Wallpapers/swayWallpaper.jpg fill
 
 #start always
+    exec /home/thecoder/programs/.stayfree-linux-x86_64.AppImage &
     exec_always --no-startup-id start xdg-desktop-portal-wlr
     exec_always --no-startup-id start xdg-desktop-portal
     exec_always --no-startup-id nm-applet
@@ -38,6 +39,7 @@ include /etc/sway/config.d/*
     exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK 
     exec --no-startup-id ~/scripts/repairportal
+    exec kanshi
    
  exec gnome-keyring-daemon
     exec_always {
@@ -230,7 +232,6 @@ bar {
     
     workspace $ws1 output DP-1
     workspace $ws2 output HDMI-A-1
-    workspace $ws3 output eDP-1
 
 # switch to workspace with urgent window automatically
     for_window [urgent=latest] focus
