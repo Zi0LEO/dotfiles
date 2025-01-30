@@ -1,0 +1,6 @@
+[submodule "nvim"]
+	path = nvim
+	url = ../nvim
+[submodule "ferris_sweep"]
+	path = ferris_sweep
+	url = ../ferris-sweep
