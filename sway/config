@@ -27,18 +27,17 @@ include /etc/sway/config.d/*
     output * bg ~/Pictures/Wallpapers/swayWallpaper.jpg fill
 
 #start always
-    exec /home/thecoder/programs/.stayfree-linux-x86_64.AppImage &
+    exec --no-startup-id dbus-launch
     exec_always --no-startup-id start xdg-desktop-portal-wlr
     exec_always --no-startup-id start xdg-desktop-portal
     exec_always --no-startup-id nm-applet
     exec_always --no-startup-id dunst
     exec_always --no-startup-id autotiling-rs
     exec_always brightnessctl set 50%
-    exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    exec lxpolkit
     exec --no-startup-id systemctl --user import-environment DISPLY WAYLAND_DISPLAY SWAYSOCK
     exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK 
-    exec --no-startup-id ~/scripts/repairportal
     exec kanshi
    
  exec gnome-keyring-daemon
@@ -102,7 +101,7 @@ bar {
     bindsym $mod+i exec notify-send "$(curl wttr.in/Cosenza?format=3)"
 
 #poweroff, reboot shortcuts
-    bindsym $mod+Shift+End exec poweroff
+    bindsym $mod+End exec poweroff
     bindsym $mod+Shift+Home exec reboot
 
 # █▀▄▀█ █▀█ █░█ █ █▄░█ █▀▀   ▄▀█ █▀█ █▀█ █░█ █▄░█ █▀▄
@@ -231,6 +230,7 @@ bar {
     assign [class="VirtualBox Machine"] workspace 6
     
     workspace $ws1 output DP-1
+    workspace $ws1 output DP-2
     workspace $ws2 output HDMI-A-1
 
 # switch to workspace with urgent window automatically
@@ -273,7 +273,7 @@ bindsym $mod+0 exec $lock_path
 output DP-1 pos 0 0
 output HDMI-A-1 pos 1920 0
 output eDP-1 pos 3840 0
-output HDMI-A-1 mode 1920x1080@99.999Hz
+output HDMI-A-1 mode 1920x1080@60.000Hz
 
 # █▀▄▀█ █▀▀ █▀▄ █ ▄▀█   █▄▀ █▀▀ █▄█ █▀
 # █░▀░█ ██▄ █▄▀ █ █▀█   █░█ ██▄ ░█░ ▄█
@@ -328,7 +328,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
 #Screenshot
 ##capture selected area to clipboard 
-#    bindsym $mod+s exec grim -g "$(slurp)" - | wl-copy && notify-send "Screenshot copied"
+    bindsym $mod+s exec grim -g "$(slurp)" - | wl-copy && notify-send "Screenshot copied"
 
 ##capture all screen to clipboard and saves
     bindsym $mod+Print exec grim && notify-send "Screenshot saved"

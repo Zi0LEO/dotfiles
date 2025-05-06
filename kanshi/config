@@ -5,5 +5,21 @@ profile {
 }
 
 profile {
+    output DP-1 mode 1920x1080@74.973Hz position 0,0
+    output HDMI-A-1 mode 1920x1080@74.973Hz position 1920,0
+    output eDP-1 disable
+}
+
+profile {
     output eDP-1 enable
+}
+
+profile {
+    output DP-2 mode 1920x1080@74.973Hz position 0,0
+    output eDP-1 disable
+}
+
+profile {
+    output DP-1 mode 1920x1080@74.973Hz position 0,0
+    output eDP-1 disable
 }
